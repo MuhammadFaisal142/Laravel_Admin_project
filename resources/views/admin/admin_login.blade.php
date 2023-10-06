@@ -14,12 +14,11 @@
     <title>Admin Login Page</title>
 
     <style type="text/css">
-    .authlogin-side-wrapper{
-        width: 100%;
-        height: 100%;
-        background-image: url({{asset('upload/login.png')}})
-    }
-    
+        .authlogin-side-wrapper {
+            width: 100%;
+            height: 100%;
+            background-image: url({{ asset('upload/login.png') }})
+        }
     </style>
 
 
@@ -67,7 +66,7 @@
                                         <a href="#"
                                             class="noble-ui-logo logo-light d-block mb-2">Easy<span>Learning</span></a>
                                         <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-                                        <form class="forms-sample" method="POST" action="{{route('admin.dashboard')}}">
+                                        <form class="forms-sample" method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="login" class="form-label">Email/Name/Email</label>
@@ -76,8 +75,9 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="userPassword" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="Password" name="Password"
-                                                    autocomplete="current-password" placeholder="Password">
+                                                <input type="password" class="form-control" id="Password"
+                                                    name="Password" autocomplete="current-password"
+                                                    placeholder="Password">
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input type="checkbox" class="form-check-input" id="authCheck">

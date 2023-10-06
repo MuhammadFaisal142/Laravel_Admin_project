@@ -15,6 +15,7 @@
         "spatie/laravel-permission": "*"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "*",
         "laravel/pint": "^1.0",
@@ -51,6 +52,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+
     },
     "extra": {
         "laravel": {

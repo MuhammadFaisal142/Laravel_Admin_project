@@ -18,8 +18,8 @@
             <span class="link-title">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item nav-category">RealEstate</li>
-        <li class="nav-item">
+        <li class="nav-item nav-category">Setting</li>
+        {{-- <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
             <i class="link-icon" data-feather="mail"></i>
             <span class="link-title">Property Type</span>
@@ -31,15 +31,45 @@
                 <a href="{{ route('all.type')}}" class="nav-link">All Type</a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">Add Type</a>
+                <a href="{{ route('add.type')}}" class="nav-link">Add Type</a>
               </li>
               
             </ul>
           </div>
-        </li>
-
+        </li> --}}
+        {{-- User Add and See all users  --}}
 
         <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
+              <i class="link-icon" data-feather="mail"></i>
+              <span class="link-title">Users</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="emails">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{{ route('all.users')}}" class="nav-link">All Users</a>
+                </li>
+                @php
+                    $authUser = auth()->user();
+                @endphp
+                @if($authUser->role == 1)
+                    <li class="nav-item">
+                        <a href="{{ route('add.user')}}" class="nav-link">Add Users</a>
+                      </li>
+                      
+                @else
+            
+                @endif
+                
+              </ul>
+            </div>
+          </li>
+  
+
+
+
+        {{-- <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#amenities" role="button" aria-expanded="false" aria-controls="emails">
             <i class="link-icon" data-feather="mail"></i>
             <span class="link-title">Amenities</span>
@@ -56,12 +86,12 @@
               
             </ul>
           </div>
-        </li>
+        </li> --}}
 
 
 
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="pages/apps/chat.html" class="nav-link">
             <i class="link-icon" data-feather="message-square"></i>
             <span class="link-title">Chat</span>
@@ -91,7 +121,7 @@
               
             </ul>
           </div>
-        </li>
+        </li> --}}
 
 
         <li class="nav-item nav-category">Role & Permission</li>
@@ -110,20 +140,15 @@
               <li class="nav-item">
                 <a href="{{route('all.roles')}}" class="nav-link">All Roles</a>
               </li>
-{{-- 
+
               <li class="nav-item">
                 <a href="{{route('add.roles.permission')}}" class="nav-link">Role in Permission</a>
-              </li> --}}
+              </li>
              
             </ul>
           </div>
         </li>
    
-        
-
-            
-       
-       
         <li class="nav-item nav-category">Docs</li>
         <li class="nav-item">
           <a href="#" target="_blank" class="nav-link">

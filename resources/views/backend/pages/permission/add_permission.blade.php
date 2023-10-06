@@ -77,14 +77,20 @@
         $(document).ready(function (){
             $('#myForm').validate({
                 rules: {
-                    amenities_name: {
+                    name: {
+                        required : true,
+                    },
+                    group_name: {
                         required : true,
                     },
 
                 },
                 messages :{
-                    amenities_name: {
-                        required : 'Please Enter Amenities Name',
+                    name: {
+                        required : 'Please Enter Permission Name',
+                    },
+                    group_name: {
+                        required : 'Please Enter Group Name',
                     },
 
 

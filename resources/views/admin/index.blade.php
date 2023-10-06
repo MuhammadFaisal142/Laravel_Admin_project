@@ -1,6 +1,5 @@
     @extends('admin.admin')
     @section('admin')
-
 <div class="page-content">
 
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
@@ -164,7 +163,7 @@
      
     </div> <!-- row -->
 
-    <div class="row">
+    {{-- <div class="row">
       <div class="col-lg-5 col-xl-4 grid-margin grid-margin-xl-0 stretch-card">
         <div class="card">
           <div class="card-body">
@@ -342,7 +341,7 @@
           </div>
         </div>
       </div>
-    </div> <!-- row -->
+    </div> <!-- row --> --}}
 
         </div>
 

@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,13 +37,14 @@ Route::middleware('auth')->group(function () {
 // require __DIR__.'/auth.php';
 // Admin Group middlewere
 // Route::middleware(['auth','role:admin'])->group(function(){
-Route::any('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 
-Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
-Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-Route::any('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
-Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
+
+Route::any('/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+Route::get('/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+Route::get('/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+Route::post('/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+Route::any('/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+Route::post('/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 // });End Admin Group Middlewwer
 
 
@@ -55,7 +56,7 @@ Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassw
 
 Route::get('user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
 
-Route::any('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::any('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 // Route::controller('propertyTypeController'::class)->group(function(){
 //    Route::get('/all/type', 'AllType')->name('all.type');
@@ -112,4 +113,16 @@ Route::post('/store/roles', [RoleController::class, 'StoreRoles'])->name('store.
 Route::get('/edit/roles/{id}', [RoleController::class, 'EditRoles'])->name('edit.roles');
 Route::post('/update/roles/', [RoleController::class, 'UpdateRoles'])->name('update.roles');
 Route::any('/delete/roles/{id}', [RoleController::class, 'DeleteRoles'])->name('delete.roles');
-// Route::any('/add/roles/permission', [RoleController::class, 'AddRolesPermission'])->name('add.roles.permission');
+Route::any('/add/roles/permission', [RoleController::class, 'AddRolesPermission'])->name('add.roles.permission');
+Route::post('/role/permission/store', [RoleController::class, 'RolePermissionStore'])->name('role.permission.store');
+
+
+////////////////Admin Panel user Routes //////////////
+
+Route::get('/users/', [UserController::class, 'allUsers'])->name('all.users');
+Route::get('/add/user', [UserController::class, 'addUsers'])->name('add.user');
+Route::post('/user/store', [UserController::class, 'userStore'])->name('store.Users');
+Route::any('/user/edit/{id}/{role}', [UserController::class, 'editUser'])->name('user.edit');
+
+Route::any('/user/update/', [UserController::class, 'updateUser'])->name('user.update');
+Route::any('/user/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');

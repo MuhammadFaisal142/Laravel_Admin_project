@@ -13,9 +13,9 @@
 
                             <h6 class="card-title">Add Roles</h6>
 
-                            <form method="POST" action="{{ route('store.roles')}}" class="form-sample" >
+                            <form id="myForm" method="POST" action="{{ route('store.roles')}}" class="form-sample" >
                                 @csrf
-                                <div class="mb-3">
+                                <div class="form-group mb-3">
                                     <label for="exampleInputUsername1" class="form-label">Roles Name </label>
                                     <input type="text"  name="name" class="form-control" >
 
@@ -48,5 +48,38 @@
 
     </div>
     </div>
+
+
+<script type="text/javascript">
+        $(document).ready(function (){
+            $('#myForm').validate({
+                rules: {
+                    name: {
+                        required : true,
+                    },
+
+                },
+                messages :{
+                    name: {
+                        required : 'Please Enter Roles Name',
+                    },
+
+
+                },
+                errorElement : 'span',
+                errorPlacement: function (error,element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight : function(element, errorClass, validClass){
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight : function(element, errorClass, validClass){
+                    $(element).removeClass('is-invalid');
+                },
+            });
+        });
+
+    </script>
 
 @endsection

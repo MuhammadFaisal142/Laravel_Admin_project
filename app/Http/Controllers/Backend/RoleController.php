@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+// use DB;
 class RoleController extends Controller
 {
     public function AllPermission(){
@@ -137,4 +140,30 @@ return redirect()->back()->with($notification);
 }//End Method
 
 
+///////////// Add Role permission all role Method ////////////
+
+    public function AddRolesPermission(){
+      $roles = Role::all();
+      $user = new User(); // Create an instance of the User model
+    $permission_groups = $user->getPermissionGroups(); // Call the method on the instance
+      $permissions = Permission::all();
+        return view('backend.pages.rolesetup.add_role_permission',compact('roles','permissions','permission_groups'));
+    }//End Method
+
+    public function RolePermissionStore(Request $request){
+        $data = array();
+        $permissions = $request->permission;
+        foreach($permissions as $key=>$item){
+            $data['role_id'] = $request->role_id;
+            $data['permission_id'] = $item;
+            DB::table('role_has_permissions')->insert($data);
+        }//end foreach
+
+        $notification= array(
+            'message' => 'Role Permission Added Successfully',
+            'alert-type' => 'success'
+
+       );
+       return redirect()->back()->with($notification);
+    }
 }
